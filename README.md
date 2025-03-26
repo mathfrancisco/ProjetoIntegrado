@@ -33,7 +33,7 @@ Este projeto visa desenvolver um sistema de gestão para microempresas de estét
 
 ### Representação das Entidades no Sistema
 
-```mermaid
+```erDiagram
 title Diagrama de Classes do Sistema de Gestão de Estética
 classDiagram
     class Cliente {
@@ -92,7 +92,7 @@ classDiagram
 
 ### Diagrama Entidade-Relacionamento (DER)
 
-```mermaid
+```erDiagram
 erDiagram
     CLIENTE {
         INT id_cliente PK AI
