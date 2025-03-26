@@ -15,7 +15,6 @@ Este projeto visa desenvolver um sistema de gestão para microempresas de estét
 ## Tecnologias Utilizadas
 
 - **Linguagem**: Java
-- **Framework**: Spring Boot
 - **Banco de Dados**: MySQL
 - **Gerenciamento de Dependências**: Maven
 
