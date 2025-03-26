@@ -1,42 +1,48 @@
-# Desenvolvimento de um Sistema de Gestão para Microempresa de Estética
+# Sistema de Gestão para Microempresa de Estética
 
-## 1. Introdução
+## Introdução
 
-O setor de estética tem crescido exponencialmente nos últimos anos, impulsionado pelo aumento da preocupação com o bem-estar e a autoestima. Pequenos e médios empreendimentos enfrentam desafios na gestão eficiente de clientes, serviços e pagamentos. Este projeto visa desenvolver um sistema de gestão para microempresas de estética, utilizando Princípios de Programação Orientada a Objetos (POO) e modelagem de banco de dados para garantir uma solução robusta e escalável.
+Este projeto visa desenvolver um sistema de gestão para microempresas de estética, utilizando os princípios da Programação Orientada a Objetos (POO) e modelagem de banco de dados. O objetivo é criar uma solução robusta e escalável que atenda às necessidades específicas do setor de estética, que tem crescido exponencialmente nos últimos anos.
 
-## 2. Análise do Negócio
+## Objetivos do Projeto
 
-### 2.1 Contexto do Mercado de Estética
+- **Desenvolvimento de Classes**: Criar classes que representem as entidades do negócio, aplicando os princípios de POO: abstração, encapsulamento, herança e polimorfismo.
+- **Modelagem de Banco de Dados**: Desenvolver um esquema de banco de dados relacional, utilizando diagramas Entidade-Relacionamento (DER) e scripts SQL para garantir integridade referencial.
 
-O setor de estética movimenta bilhões de reais anualmente e tem apresentado crescimento significativo, principalmente pela busca constante por serviços especializados. Pequenos salões e clínicas de estética enfrentam desafios como:
+## Requisitos do Projeto
 
-- Organização de agenda de clientes.
-- Controle financeiro e de pagamentos.
-- Gerenciamento de serviços e pacotes promocionais.
+### Requisitos de POO
 
-A falta de uma gestão eficiente pode levar à perda de clientes e desorganização financeira.
+1. **Abstração**: Identificar as características essenciais de cada entidade do negócio.
+2. **Encapsulamento**: Proteger os dados e comportamentos internos das classes.
+3. **Herança**: Estabelecer hierarquias entre classes que compartilham características comuns.
+4. **Polimorfismo**: Permitir que diferentes tipos de serviços sejam tratados de maneira uniforme.
 
-### 2.2 Objetivo do Sistema
+### Requisitos de Banco de Dados
 
-O sistema desenvolvido tem como objetivo:
+1. **Modelagem de Entidades**: Definir entidades como Clientes, Profissionais, Serviços, Produtos, Fichas Técnicas e Agendamentos.
+2. **Atributos e Relacionamentos**: Estabelecer atributos e relacionamentos entre as entidades.
+3. **Chaves Primárias e Estrangeiras**: Garantir integridade referencial com chaves primárias e estrangeiras.
+4. **Consultas SQL**: Implementar consultas para inserção, atualização, remoção e recuperação de dados.
+5. **Diagrama Entidade-Relacionamento (DER)**: Representar visualmente a estrutura do banco de dados, incluindo entidades, atributos e relacionamentos.
 
-- Automatizar o agendamento de consultas e serviços.
-- Controlar pagamentos e planos de fidelidade.
-- Armazenar dados de clientes e histórico de atendimentos.
-- Garantir segurança e integridade dos dados.
+## Funcionalidades
 
-## 3. Modelagem Orientada a Objetos
+- **Gestão de Clientes**: Armazena informações detalhadas sobre os clientes.
+- **Agendamento de Serviços**: Gerencia marcações de consultas e procedimentos.
+- **Controle de Produtos e Estoque**: Monitora os produtos utilizados nos procedimentos.
+- **Fichas Técnicas**: Permite o registro de avaliações e recomendações personalizadas.
 
-A POO é um paradigma essencial para modularização e reutilização de código. O sistema foi projetado utilizando os quatro pilares da POO:
+## Modelagem Orientada a Objetos
 
-### 3.1 Principais Classes
+### Principais Classes
 
-1. **Cliente**: Representa os clientes da clínica, armazenando informações como nome, telefone e histórico de atendimentos.
-2. **Profissional**: Representa os profissionais do salão, com informações como especialidade e disponibilidade.
-3. **Serviço**: Contém dados sobre os tipos de serviços oferecidos, preços e duração.
+1. **Cliente**: Representa os clientes da clínica.
+2. **Profissional**: Representa os profissionais do salão.
+3. **Serviço**: Contém dados sobre os tipos de serviços oferecidos.
 4. **Agendamento**: Gerencia o relacionamento entre Cliente, Profissional e Serviço.
 
-### 3.2 Implementação das Classes em Java
+### Implementação das Classes em Java
 
 ```java
 public class Cliente {
@@ -51,9 +57,7 @@ public class Cliente {
     public String getNome() { return nome; }
     public String getTelefone() { return telefone; }
 }
-```
 
-```java
 public class Servico {
     private String descricao;
     private double preco;
@@ -68,18 +72,107 @@ public class Servico {
 }
 ```
 
-## 4. Modelagem de Banco de Dados
+## Modelagem de Banco de Dados
 
-A modelagem do banco de dados segue os conceitos de Modelo Entidade-Relacionamento (MER) e Diagrama de Entidade e Relacionamento (DER), garantindo estrutura eficiente para armazenamento de informações.
+### Diagrama Entidade-Relacionamento (DER)
 
-### 4.1 Principais Entidades e Relacionamentos
+```mermaid
+erDiagram
+    CLIENTE {
+        INT id_cliente PK AI
+        VARCHAR(100) nome
+        VARCHAR(14) cpf
+        VARCHAR(15) telefone
+        VARCHAR(100) email
+        VARCHAR(200) endereco
+        DATE data_nascimento
+        DATE data_cadastro
+    }
 
-- **Cliente** (id, nome, telefone)
-- **Profissional** (id, nome, especialidade)
-- **Serviço** (id, descrição, preço)
-- **Agendamento** (id, cliente_id, profissional_id, servico_id, data)
+    PROFISSIONAL {
+        INT id_profissional PK AI
+        VARCHAR(100) nome
+        VARCHAR(14) cpf
+        VARCHAR(15) telefone
+        VARCHAR(100) email
+        VARCHAR(200) endereco
+        DATE data_nascimento
+        VARCHAR(50) especialidade
+    }
 
-### 4.2 Script SQL de Criação do Banco
+    SERVICO {
+        INT id_servico PK AI
+        VARCHAR(100) nome
+        TEXT descricao
+        DECIMAL(10,2) valor
+        INT duracao_minutos
+        ENUM('FACIAL', 'CORPORAL') tipo
+    }
+
+    SERVICO_FACIAL {
+        INT id_servico_facial PK AI
+        INT id_servico FK
+        ENUM('FACE_COMPLETA', 'OLHOS', 'LABIOS', 'BOCHECHAS', 'TESTA') regiao
+        ENUM('BAIXA', 'MEDIA', 'ALTA') intensidade
+    }
+
+    SERVICO_CORPORAL {
+        INT id_servico_corporal PK AI
+        INT id_servico FK
+        ENUM('PERNAS', 'BRACOS', 'COSTAS', 'ABDOMEN', 'GLUTEOS') area_corpo
+        BOOLEAN necessita_avaliacao
+    }
+
+    PRODUTO {
+        INT id_produto PK AI
+        VARCHAR(100) nome
+        VARCHAR(50) marca
+        VARCHAR(20) lote
+        DATE data_validade
+        INT quantidade_estoque
+        DECIMAL(10,2) valor_custo
+    }
+
+    FICHA_TECNICA {
+        INT id_ficha PK AI
+        INT id_cliente FK
+        DATE data_avaliacao
+        INT id_profissional FK
+        TEXT observacoes
+    }
+
+    AGENDAMENTO {
+        INT id_agendamento PK AI
+        INT id_cliente FK
+        INT id_profissional FK
+        INT id_servico FK
+        DATE data
+        TIME horario
+        ENUM('AGENDADO', 'CONFIRMADO', 'REALIZADO', 'CANCELADO') status
+    }
+
+    PRODUTO_UTILIZADO {
+        INT id_produto_utilizado PK AI
+        INT id_servico FK
+        INT id_produto FK
+        DECIMAL(10,2) quantidade_padrao
+    }
+
+    CLIENTE ||--o{ FICHA_TECNICA : "1:N"
+    CLIENTE ||--o{ AGENDAMENTO : "1:N"
+    PROFISSIONAL ||--o{ AGENDAMENTO : "1:N"
+    PROFISSIONAL ||--o{ FICHA_TECNICA : "1:N"
+    SERVICO ||--o{ AGENDAMENTO : "1:N"
+    SERVICO ||--o{ PRODUTO_UTILIZADO : "1:N"
+    SERVICO ||--o|| SERVICO_FACIAL : "1:1"
+    SERVICO ||--o|| SERVICO_CORPORAL : "1:1"
+    PRODUTO ||--o{ PRODUTO_UTILIZADO : "1:N"
+    SERVICO_FACIAL }o--|| SERVICO : "1:1"
+    SERVICO_CORPORAL }o--|| SERVICO : "1:1"
+
+```
+
+### Script SQL de Criação do Banco
 
 ```sql
 CREATE TABLE Cliente (
@@ -112,15 +205,18 @@ CREATE TABLE Agendamento (
 );
 ```
 
-## 5. Conclusão
+## Benefícios do Projeto
 
-Este projeto propõe uma solução inovadora para a gestão de microempresas do setor de estética, utilizando conceitos de POO e modelagem de banco de dados. A implementação do sistema contribuirá para maior eficiência e segurança nos processos administrativos, melhorando a experiência dos clientes e otimizando o tempo dos profissionais.
+- **Gestão Eficiente**: O sistema automatiza o agendamento e controle de estoque.
+- **Melhoria no Atendimento**: Permite um atendimento personalizado com fichas técnicas detalhadas.
+- **Escalabilidade**: A modelagem POO e o banco de dados relacional garantem que o sistema cresça junto com a empresa.
 
-Futuras melhorias incluem:
+## Futuras Melhorias
 
-- Integração com sistemas de pagamento online.
-- Desenvolvimento de um aplicativo móvel.
-- Implementação de dashboards para análise de dados.
+- **Integração com Pagamentos Online**: Implementar sistemas de pagamento eletrônico.
+- **Desenvolvimento de Aplicativo Móvel**: Oferecer uma interface móvel para clientes e profissionais.
+- **Dashboards para Análise de Dados**: Incluir ferramentas de análise para melhorar a tomada de decisões.
 
-O sistema proposto se apresenta como uma solução escalável e adaptável às necessidades do mercado de estética.
 
+Citations:
+[1] https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/31488785/c14fb259-16e5-405b-bf2d-51ae31cc7caf/paste.txt
