@@ -22,9 +22,30 @@ Este projeto visa desenvolver um sistema de gestão para microempresas de estét
 
 ```
 /SistemaGestaoEstetica
-│── src/main/java/com/estetica/
-│── src/main/resources/
-│── pom.xml
+│── src/
+│   ├── Main.java
+│   ├── models/
+│   │   ├── Cliente.java
+│   │   ├── Profissional.java
+│   │   ├── Servico.java
+│   │   ├── Agendamento.java
+│   │   ├── Produto.java
+│   │   ├── Financeiro.java
+│   ├── database/
+│   │   ├── DatabaseConnection.java
+│   ├── dao/
+│   │   ├── ClienteDAO.java
+│   │   ├── ProfissionalDAO.java
+│   │   ├── ServicoDAO.java
+│   │   ├── AgendamentoDAO.java
+│   │   ├── ProdutoDAO.java
+│   │   ├── FinanceiroDAO.java
+│   ├── utils/
+│   │   ├── InputHelper.java
+│   ├── services/
+│   │   ├── AgendamentoService.java
+│   │   ├── FinanceiroService.java
+│── database.sql
 │── README.md
 ```
 
