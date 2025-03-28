@@ -15,8 +15,7 @@ Este projeto visa desenvolver um sistema de gestão para microempresas de estét
 ## Tecnologias Utilizadas
 
 - **Linguagem**: Java
-- **Banco de Dados**: MySQL
-- **Gerenciamento de Dependências**: Maven
+- **Banco de Dados**: MySQL ou Docker(Opcional para conteinerização do banco de dados) 
 
 ## Estrutura do Projeto
 
@@ -231,6 +230,80 @@ CREATE TABLE Agendamento (
 - **Monitoramento models.Financeiro**: Acompanha receitas, despesas e calcula saldo para melhor tomada de decisão.
 - **Escalabilidade**: A modelagem POO e o banco de dados relacional garantem que o sistema cresça junto com a empresa.
 
-## Autor
-Desenvolvido por Matheus Francisco.
+## Pré-requisitos
+
+- **Java 11 ou superior**
+- **Docker (opcional, para configuração do banco de dados)**
+- **MySQL 8.0**
+
+## Configuração do Ambiente
+1. Clonar o Repositório
+   ```bash 
+   git clone https://github.com/seu-usuario/sistema-gestao-estetica.git 
+   cd sistema-gestao-estetica ```
+2. Configuração do Banco de Dados
+   Opção 1: Usando Docker
+
+## Instale o Docker e Docker Compose
+## Execute o comando:
+
+```bash
+  Copiar docker-compose up -d
+Isso irá:
+
+Iniciar um container MySQL
+Criar o banco de dados sistema_gestao_estetica
+Configurar usuário e senha
+Criar as tabelas iniciais
+Iniciar o phpMyAdmin na porta 8080
+
+Acesse o phpMyAdmin:
+
+URL: http://localhost:8080
+Usuário: estetica_user
+Senha: estetica_password
+
+Opção 2: Configuração Manual
+
+Crie um banco de dados MySQL
+Execute o script init.sql para criar as tabelas
+Atualize as configurações de conexão no arquivo DatabaseConnection.java
+
+3. Compilar o Projeto
+   bashCopiarmvn clean install
+4. Executar a Aplicação
+   bashCopiarmvn exec:java -Dexec.mainClass="Main"
+   Estrutura do Projeto
+   Copiar/SistemaGestaoEstetica
+   │── src/
+   │   ├── Main.java
+   │   ├── models/
+   │   ├── database/
+   │   ├── dao/
+   │   ├── services/
+   │── init.sql
+   │── pom.xml
+   │── README.md
+   ```
+## Funcionalidades do Menu
+## Menu Principal
+
+- **Gerenciar Agendamentos**
+- **Gerenciar Financeiro**
+- **Cadastrar Cliente
+- **Cadastrar Profissional
+- **Cadastrar Serviço
+- **Sair
+
+## Submenu de Agendamentos
+
+- **Criar Agendamento
+- **Listar Agendamentos do Cliente
+- **Atualizar Status do Agendamento
+
+## Submenu Financeiro
+
+- **Registrar Lançamento Financeiro
+- **Gerar Relatório Financeiro
+- **Obter Resumo Financeiro
 
