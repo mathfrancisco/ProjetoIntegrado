@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   mysql-db:
     image: mysql:8.0
@@ -13,11 +11,9 @@ services:
       - "3306:3306"
     volumes:
       - mysql-data:/var/lib/mysql
-      # Mount the database.sql file to the initialization directory
-      - ./database.sql:/docker-entrypoint-initdb.d/database.sql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     restart: always
 
-  # Optional: Database management tool
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: estetica-phpmyadmin

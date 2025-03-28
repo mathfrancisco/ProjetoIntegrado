@@ -45,7 +45,7 @@ Este projeto visa desenvolver um sistema de gestão para microempresas de estét
 │   ├── services/
 │   │   ├── services.AgendamentoService.java
 │   │   ├── services.FinanceiroService.java
-│── database.sql
+│── init.sql
 │── README.md
 ```
 

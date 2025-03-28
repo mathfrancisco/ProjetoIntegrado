@@ -10,10 +10,9 @@ import java.sql.SQLException;
  */
 public class DatabaseConnection {
     // Configurações de conexão com o banco de dados
-    private static final String URL = "jdbc:mysql://localhost:3306/sistema_gestao_estetica";
-    private static final String USUARIO = "root";
-    private static final String SENHA = ""; // Substitua com sua senha real
-
+    private static final String URL = "jdbc:mysql://127.0.0.1:3306/sistema_gestao_estetica";
+    private static final String USUARIO = "estetica_user";
+    private static final String SENHA = "estetica_password";
     // Construtor privado para evitar instanciação
     private DatabaseConnection() {}
 
