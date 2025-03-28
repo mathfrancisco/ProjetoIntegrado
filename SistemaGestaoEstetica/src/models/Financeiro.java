@@ -1,3 +1,5 @@
+package models;
+
 public class Financeiro {
     private int id;
     private double receita;

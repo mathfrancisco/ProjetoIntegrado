@@ -1,3 +1,8 @@
+package dao;
+
+import models.Servico;
+import models.Servico.TipoServico;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -29,19 +34,19 @@ public class ServicoDAO {
         PreparedStatement stmt = connection.prepareStatement(sql);
         stmt.setInt(1, id);
         ResultSet rs = stmt.executeQuery();
-        
+
         Servico servico = null;
         if (rs.next()) {
             servico = new Servico(
-                rs.getInt("id"),
-                rs.getString("nome"),
-                rs.getString("descricao"),
-                rs.getDouble("valor"),
-                rs.getInt("duracao_minutos"),
-                TipoServico.valueOf(rs.getString("tipo"))
+                    rs.getInt("id"),
+                    rs.getString("nome"),
+                    rs.getString("descricao"),
+                    rs.getDouble("valor"),
+                    rs.getInt("duracao_minutos"),
+                    TipoServico.valueOf(rs.getString("tipo"))
             );
         }
-        
+
         rs.close();
         stmt.close();
         return servico;
@@ -51,20 +56,20 @@ public class ServicoDAO {
         String sql = "SELECT * FROM Servico";
         PreparedStatement stmt = connection.prepareStatement(sql);
         ResultSet rs = stmt.executeQuery();
-        
+
         List<Servico> servicos = new ArrayList<>();
         while (rs.next()) {
             Servico servico = new Servico(
-                rs.getInt("id"),
-                rs.getString("nome"),
-                rs.getString("descricao"),
-                rs.getDouble("valor"),
-                rs.getInt("duracao_minutos"),
-                TipoServico.valueOf(rs.getString("tipo"))
+                    rs.getInt("id"),
+                    rs.getString("nome"),
+                    rs.getString("descricao"),
+                    rs.getDouble("valor"),
+                    rs.getInt("duracao_minutos"),
+                    TipoServico.valueOf(rs.getString("tipo"))
             );
             servicos.add(servico);
         }
-        
+
         rs.close();
         stmt.close();
         return servicos;
@@ -96,28 +101,22 @@ public class ServicoDAO {
         PreparedStatement stmt = connection.prepareStatement(sql);
         stmt.setString(1, tipo.name());
         ResultSet rs = stmt.executeQuery();
-        
+
         List<Servico> servicos = new ArrayList<>();
         while (rs.next()) {
             Servico servico = new Servico(
-                rs.getInt("id"),
-                rs.getString("nome"),
-                rs.getString("descricao"),
-                rs.getDouble("valor"),
-                rs.getInt("duracao_minutos"),
-                TipoServico.valueOf(rs.getString("tipo"))
+                    rs.getInt("id"),
+                    rs.getString("nome"),
+                    rs.getString("descricao"),
+                    rs.getDouble("valor"),
+                    rs.getInt("duracao_minutos"),
+                    TipoServico.valueOf(rs.getString("tipo"))
             );
             servicos.add(servico);
         }
-        
+
         rs.close();
         stmt.close();
         return servicos;
-    }
-
-    // Enum para tipos de serviço
-    public enum TipoServico {
-        FACIAL,
-        CORPORAL
     }
 }

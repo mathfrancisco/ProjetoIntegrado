@@ -1,12 +1,21 @@
+package services;
+
+import dao.AgendamentoDAO;
+import dao.FinanceiroDAO;
+import dao.ProdutoDAO;
+import models.Agendamento;
+import models.Financeiro;
+import models.Produto;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class FinanceiroService {
-    private FinanceiroDAO financeiroDAO;
-    private AgendamentoDAO agendamentoDAO;
-    private ProdutoDAO produtoDAO;
+    private final FinanceiroDAO financeiroDAO;
+    private final AgendamentoDAO agendamentoDAO;
+    private final ProdutoDAO produtoDAO;
 
     public FinanceiroService(Connection connection) {
         this.financeiroDAO = new FinanceiroDAO(connection);
@@ -64,7 +73,7 @@ public class FinanceiroService {
     /**
      * Obtém um resumo financeiro com receitas, despesas e saldo
      * 
-     * @return Objeto Financeiro com resumo
+     * @return Objeto models.Financeiro com resumo
      * @throws SQLException em caso de erro de banco de dados
      */
     public Financeiro obterResumoFinanceiro() throws SQLException {
@@ -103,7 +112,7 @@ public class FinanceiroService {
         Financeiro resumo = obterResumoFinanceiro();
         
         StringBuilder relatorio = new StringBuilder();
-        relatorio.append("Relatório Financeiro\n");
+        relatorio.append("Relatório models.Financeiro\n");
         relatorio.append("-------------------\n");
         relatorio.append(String.format("Receita Total: R$ %.2f\n", resumo.getReceita()));
         relatorio.append(String.format("Despesa Total: R$ %.2f\n", resumo.getDespesa()));

@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  mysql-db:
+    image: mysql:8.0
+    container_name: sistema-estetica-db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: sistema_gestao_estetica
+      MYSQL_USER: estetica_user
+      MYSQL_PASSWORD: estetica_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+      # Mount the database.sql file to the initialization directory
+      - ./database.sql:/docker-entrypoint-initdb.d/database.sql
+    restart: always
+
+  # Optional: Database management tool
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: estetica-phpmyadmin
+    environment:
+      PMA_HOST: mysql-db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - "8080:80"
+    depends_on:
+      - mysql-db
+    restart: always
+
+volumes:
+  mysql-data:

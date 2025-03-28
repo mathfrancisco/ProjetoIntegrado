@@ -61,7 +61,7 @@ CREATE TABLE Agendamento (
     FOREIGN KEY (servico_id) REFERENCES Servico(id) ON DELETE SET NULL
 );
 
--- Tabela Financeiro
+-- Tabela models.Financeiro
 CREATE TABLE Financeiro (
     id INT AUTO_INCREMENT PRIMARY KEY,
     receita DECIMAL(10,2) NOT NULL DEFAULT 0,

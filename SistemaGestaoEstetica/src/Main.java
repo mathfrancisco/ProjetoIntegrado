@@ -1,3 +1,11 @@
+import dao.ClienteDAO;
+import dao.ProfissionalDAO;
+import dao.ServicoDAO;
+import database.DatabaseConnection;
+import models.*;
+import services.AgendamentoService;
+import services.FinanceiroService;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Date;
@@ -42,9 +50,9 @@ public class Main {
         while (true) {
             System.out.println("\n--- Sistema de Gestão para Microempresa de Estética ---");
             System.out.println("1. Gerenciar Agendamentos");
-            System.out.println("2. Gerenciar Financeiro");
-            System.out.println("3. Cadastrar Cliente");
-            System.out.println("4. Cadastrar Profissional");
+            System.out.println("2. Gerenciar models.Financeiro");
+            System.out.println("3. Cadastrar models.Cliente");
+            System.out.println("4. Cadastrar models.Profissional");
             System.out.println("5. Cadastrar Serviço");
             System.out.println("0. Sair");
             System.out.print("Escolha uma opção: ");
@@ -81,7 +89,7 @@ public class Main {
         while (true) {
             System.out.println("\n--- Gerenciar Agendamentos ---");
             System.out.println("1. Criar Agendamento");
-            System.out.println("2. Listar Agendamentos do Cliente");
+            System.out.println("2. Listar Agendamentos do models.Cliente");
             System.out.println("3. Atualizar Status do Agendamento");
             System.out.println("0. Voltar");
             System.out.print("Escolha uma opção: ");
@@ -113,10 +121,10 @@ public class Main {
 
     private static void menuFinanceiro() {
         while (true) {
-            System.out.println("\n--- Gerenciar Financeiro ---");
-            System.out.println("1. Registrar Lançamento Financeiro");
-            System.out.println("2. Gerar Relatório Financeiro");
-            System.out.println("3. Obter Resumo Financeiro");
+            System.out.println("\n--- Gerenciar models.Financeiro ---");
+            System.out.println("1. Registrar Lançamento models.Financeiro");
+            System.out.println("2. Gerar Relatório models.Financeiro");
+            System.out.println("3. Obter Resumo models.Financeiro");
             System.out.println("0. Voltar");
             System.out.print("Escolha uma opção: ");
 
@@ -146,9 +154,9 @@ public class Main {
     }
 
     private static void criarAgendamento() throws SQLException {
-        System.out.print("ID do Cliente: ");
+        System.out.print("ID do models.Cliente: ");
         int clienteId = scanner.nextInt();
-        System.out.print("ID do Profissional: ");
+        System.out.print("ID do models.Profissional: ");
         int profissionalId = scanner.nextInt();
         System.out.print("ID do Serviço: ");
         int servicoId = scanner.nextInt();
@@ -160,7 +168,7 @@ public class Main {
     }
 
     private static void listarAgendamentosCliente() throws SQLException {
-        System.out.print("ID do Cliente: ");
+        System.out.print("ID do models.Cliente: ");
         int clienteId = scanner.nextInt();
         
         List<Agendamento> agendamentos = agendamentoService.listarAgendamentosCliente(clienteId);
@@ -211,14 +219,14 @@ public class Main {
 
     private static void cadastrarCliente() {
         try {
-            System.out.print("Nome do Cliente: ");
+            System.out.print("Nome do models.Cliente: ");
             String nome = scanner.nextLine();
-            System.out.print("Telefone do Cliente: ");
+            System.out.print("Telefone do models.Cliente: ");
             String telefone = scanner.nextLine();
             
             Cliente cliente = new Cliente(0, nome, telefone);
             clienteDAO.inserirCliente(cliente);
-            System.out.println("Cliente cadastrado com sucesso.");
+            System.out.println("models.Cliente cadastrado com sucesso.");
         } catch (SQLException e) {
             System.err.println("Erro ao cadastrar cliente: " + e.getMessage());
         }
@@ -226,7 +234,7 @@ public class Main {
 
     private static void cadastrarProfissional() {
         try {
-            System.out.print("Nome do Profissional: ");
+            System.out.print("Nome do models.Profissional: ");
             String nome = scanner.nextLine();
             System.out.print("Especialidade: ");
             String especialidade = scanner.nextLine();
@@ -239,10 +247,10 @@ public class Main {
             System.out.print("Endereço: ");
             String endereco = scanner.nextLine();
             
-            Profissional profissional = new Profissional(0, nome, especialidade, telefone, 
-                                                         email, cpf, endereco, new Date());
+            Profissional profissional = new Profissional(0, nome, especialidade, telefone,
+                                                         email, cpf, endereco,   new Date());
             profissionalDAO.inserirProfissional(profissional);
-            System.out.println("Profissional cadastrado com sucesso.");
+            System.out.println("models.Profissional cadastrado com sucesso.");
         } catch (SQLException e) {
             System.err.println("Erro ao cadastrar profissional: " + e.getMessage());
         }

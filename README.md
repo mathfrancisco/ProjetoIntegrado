@@ -9,7 +9,7 @@ Este projeto visa desenvolver um sistema de gestão para microempresas de estét
 - **Desenvolvimento de Classes**: Criar classes que representem as entidades do negócio, aplicando os princípios de POO: abstração, encapsulamento, herança e polimorfismo.
 - **Modelagem de Banco de Dados**: Desenvolver um esquema de banco de dados relacional, utilizando diagramas Entidade-Relacionamento (DER) e scripts SQL para garantir integridade referencial.
 - **Gestão de Estoque**: Implementar funcionalidades para controle de estoque de produtos utilizados nos serviços.
-- **Controle Financeiro**: Criar um módulo de controle financeiro para registrar receitas e despesas.
+- **Controle models.Financeiro**: Criar um módulo de controle financeiro para registrar receitas e despesas.
 - **Emissão de Relatórios**: Desenvolver relatórios financeiros e de desempenho dos profissionais e serviços.
 
 ## Tecnologias Utilizadas
@@ -25,26 +25,26 @@ Este projeto visa desenvolver um sistema de gestão para microempresas de estét
 │── src/
 │   ├── Main.java
 │   ├── models/
-│   │   ├── Cliente.java
-│   │   ├── Profissional.java
-│   │   ├── Servico.java
+│   │   ├── models.Cliente.java
+│   │   ├── models.Profissional.java
+│   │   ├── models.Servico.java
 │   │   ├── Agendamento.java
-│   │   ├── Produto.java
-│   │   ├── Financeiro.java
+│   │   ├── models.Produto.java
+│   │   ├── models.Financeiro.java
 │   ├── database/
-│   │   ├── DatabaseConnection.java
+│   │   ├── database.DatabaseConnection.java
 │   ├── dao/
-│   │   ├── ClienteDAO.java
-│   │   ├── ProfissionalDAO.java
-│   │   ├── ServicoDAO.java
-│   │   ├── AgendamentoDAO.java
-│   │   ├── ProdutoDAO.java
-│   │   ├── FinanceiroDAO.java
+│   │   ├── dao.ClienteDAO.java
+│   │   ├── dao.ProfissionalDAO.java
+│   │   ├── dao.ServicoDAO.java
+│   │   ├── dao.AgendamentoDAO.java
+│   │   ├── dao.ProdutoDAO.java
+│   │   ├── dao.FinanceiroDAO.java
 │   ├── utils/
 │   │   ├── InputHelper.java
 │   ├── services/
-│   │   ├── AgendamentoService.java
-│   │   ├── FinanceiroService.java
+│   │   ├── services.AgendamentoService.java
+│   │   ├── services.FinanceiroService.java
 │── database.sql
 │── README.md
 ```
@@ -56,21 +56,21 @@ Este projeto visa desenvolver um sistema de gestão para microempresas de estét
 ```erDiagram
 title Diagrama de Classes do Sistema de Gestão de Estética
 classDiagram
-    class Cliente {
+    class models.Cliente {
         +String nome
         +String telefone
         +getNome()
         +getTelefone()
     }
     
-    class Profissional {
+    class models.Profissional {
         +String nome
         +String especialidade
         +getNome()
         +getEspecialidade()
     }
     
-    class Servico {
+    class models.Servico {
         +String descricao
         +double preco
         +getDescricao()
@@ -78,14 +78,14 @@ classDiagram
     }
     
     class Agendamento {
-        +Cliente cliente
-        +Profissional profissional
-        +Servico servico
+        +models.Cliente cliente
+        +models.Profissional profissional
+        +models.Servico servico
         +Date data
         +agendarServico()
     }
     
-    class Produto {
+    class models.Produto {
         +String nome
         +int quantidade
         +double preco
@@ -94,18 +94,18 @@ classDiagram
         +getPreco()
     }
 
-    class Financeiro {
+    class models.Financeiro {
         +double receita
         +double despesa
         +double calcularSaldo()
     }
 
-    Cliente --> Agendamento
-    Profissional --> Agendamento
-    Servico --> Agendamento
-    Servico --> Produto
-    Financeiro --> Servico
-    Financeiro --> Produto
+    models.Cliente --> Agendamento
+    models.Profissional --> Agendamento
+    models.Servico --> Agendamento
+    models.Servico --> models.Produto
+    models.Financeiro --> models.Servico
+    models.Financeiro --> models.Produto
 ```
 
 ## Modelagem de Banco de Dados
@@ -180,32 +180,32 @@ erDiagram
 ## Script SQL de Criação do Banco de Dados
 
 ```sql
-CREATE TABLE Cliente (
+CREATE TABLE models.Cliente (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     telefone VARCHAR(15) NOT NULL
 );
 
-CREATE TABLE Profissional (
+CREATE TABLE models.Profissional (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     especialidade VARCHAR(50) NOT NULL
 );
 
-CREATE TABLE Servico (
+CREATE TABLE models.Servico (
     id INT AUTO_INCREMENT PRIMARY KEY,
     descricao VARCHAR(200) NOT NULL,
     preco DECIMAL(10,2) NOT NULL
 );
 
-CREATE TABLE Produto (
+CREATE TABLE models.Produto (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     quantidade INT NOT NULL,
     preco DECIMAL(10,2) NOT NULL
 );
 
-CREATE TABLE Financeiro (
+CREATE TABLE models.Financeiro (
     id INT AUTO_INCREMENT PRIMARY KEY,
     receita DECIMAL(10,2) NOT NULL,
     despesa DECIMAL(10,2) NOT NULL,
@@ -218,9 +218,9 @@ CREATE TABLE Agendamento (
     profissional_id INT,
     servico_id INT,
     data DATETIME NOT NULL,
-    FOREIGN KEY (cliente_id) REFERENCES Cliente(id),
-    FOREIGN KEY (profissional_id) REFERENCES Profissional(id),
-    FOREIGN KEY (servico_id) REFERENCES Servico(id)
+    FOREIGN KEY (cliente_id) REFERENCES models.Cliente(id),
+    FOREIGN KEY (profissional_id) REFERENCES models.Profissional(id),
+    FOREIGN KEY (servico_id) REFERENCES models.Servico(id)
 );
 ```
 
@@ -228,7 +228,7 @@ CREATE TABLE Agendamento (
 
 - **Gestão Eficiente**: Automatiza o agendamento, controle de estoque e fluxo financeiro.
 - **Melhoria no Atendimento**: Permite um atendimento personalizado com fichas técnicas detalhadas.
-- **Monitoramento Financeiro**: Acompanha receitas, despesas e calcula saldo para melhor tomada de decisão.
+- **Monitoramento models.Financeiro**: Acompanha receitas, despesas e calcula saldo para melhor tomada de decisão.
 - **Escalabilidade**: A modelagem POO e o banco de dados relacional garantem que o sistema cresça junto com a empresa.
 
 ## Autor

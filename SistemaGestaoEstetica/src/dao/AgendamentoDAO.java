@@ -1,3 +1,10 @@
+package dao;
+
+import models.Agendamento;
+import models.Cliente;
+import models.Profissional;
+import models.Servico;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -39,7 +46,7 @@ public class AgendamentoDAO {
         
         Agendamento agendamento = null;
         if (rs.next()) {
-            Cliente cliente = new Cliente(rs.getInt("cliente_id"), 
+            Cliente cliente = new Cliente(rs.getInt("cliente_id"),
                                           rs.getString("cliente_nome"), 
                                           rs.getString("cliente_telefone"));
             

@@ -1,14 +1,24 @@
+package services;
+
+import dao.AgendamentoDAO;
+import dao.ClienteDAO;
+import dao.ProfissionalDAO;
+import dao.ServicoDAO;
+import models.Agendamento;
+import models.Cliente;
+import models.Profissional;
+import models.Servico;
+
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class AgendamentoService {
-    private AgendamentoDAO agendamentoDAO;
-    private ClienteDAO clienteDAO;
-    private ProfissionalDAO profissionalDAO;
-    private ServicoDAO servicoDAO;
+    private final AgendamentoDAO agendamentoDAO;
+    private final ClienteDAO clienteDAO;
+    private final ProfissionalDAO profissionalDAO;
+    private final ServicoDAO servicoDAO;
 
     public AgendamentoService(Connection connection) {
         this.agendamentoDAO = new AgendamentoDAO(connection);
@@ -36,12 +46,12 @@ public class AgendamentoService {
         Servico servico = servicoDAO.buscarServico(servicoId);
 
         if (cliente == null || profissional == null || servico == null) {
-            throw new IllegalArgumentException("Cliente, Profissional ou Serviço inválido.");
+            throw new IllegalArgumentException("models.Cliente, models.Profissional ou Serviço inválido.");
         }
 
         // Verificar disponibilidade do profissional
         if (!verificarDisponibilidadeProfissional(profissionalId, data)) {
-            throw new IllegalArgumentException("Profissional não está disponível na data e horário selecionados.");
+            throw new IllegalArgumentException("models.Profissional não está disponível na data e horário selecionados.");
         }
 
         // Criar agendamento

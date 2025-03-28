@@ -1,3 +1,5 @@
+package database;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -65,7 +67,7 @@ public class DatabaseConnection {
 
     /**
      * Exemplo de uso no Main ou em outras classes
-     * try (Connection conexao = DatabaseConnection.obterConexao()) {
+     * try (Connection conexao = database.DatabaseConnection.obterConexao()) {
      *     // Operações com o banco de dados
      * } catch (SQLException e) {
      *     // Tratamento de erro

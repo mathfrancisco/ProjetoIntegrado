@@ -1,3 +1,5 @@
+package models;
+
 import java.util.Date;
 
 public class Profissional {
@@ -11,7 +13,7 @@ public class Profissional {
     private Date dataNascimento;
 
     // Construtor completo
-    public Profissional(int id, String nome, String especialidade, String telefone, 
+    public Profissional(int id, String nome, String especialidade, String telefone,
                         String email, String cpf, String endereco, Date dataNascimento) {
         this.id = id;
         this.nome = nome;
@@ -23,7 +25,14 @@ public class Profissional {
         this.dataNascimento = dataNascimento;
     }
 
-    // Getters e Setters
+    // Construtor simplificado para uso no DAO
+    public Profissional(int id, String nome, String especialidade) {
+        this.id = id;
+        this.nome = nome;
+        this.especialidade = especialidade;
+    }
+
+    // Getters e Setters (unchanged)
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 
