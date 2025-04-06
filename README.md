@@ -292,20 +292,20 @@ Atualize as configurações de conexão no arquivo DatabaseConnection.java
 
 - **Gerenciar Agendamentos**
 - **Gerenciar Financeiro**
-- **Cadastrar Cliente
-- **Cadastrar Profissional
-- **Cadastrar Serviço
-- **Sair
+- **Cadastrar Cliente**
+- **Cadastrar Profissional**
+- **Cadastrar Serviço**
+- **Sair**
 
 ## Submenu de Agendamentos
 
-- **Criar Agendamento
-- **Listar Agendamentos do Cliente
-- **Atualizar Status do Agendamento
+- **Criar Agendamento**
+- **Listar Agendamentos do Cliente**
+- **Atualizar Status do Agendamento**
 
 ## Submenu Financeiro
 
-- **Registrar Lançamento Financeiro
-- **Gerar Relatório Financeiro
-- **Obter Resumo Financeiro
+- **Registrar Lançamento Financeiro**
+- **Gerar Relatório Financeiro**
+- **Obter Resumo Financeiro**
 
